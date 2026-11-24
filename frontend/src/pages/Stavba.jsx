@@ -29,8 +29,13 @@ export default function Stavba() {
     setUnits(u)
   }, [buildingId])
 
+  // LINT popravek
   useEffect(() => {
-    if (buildingId) load().catch((err) => setMessage({ type: 'error', text: err.message }))
+    if (buildingId) {
+      Promise.resolve()
+        .then(() => load())
+        .catch((err) => setMessage({ type: 'error', text: err.message }))
+    }
   }, [buildingId, load])
 
   // Vsako dejanje teče skozi to funkcijo, da so sporočila o uspehu in napakah enotna.
