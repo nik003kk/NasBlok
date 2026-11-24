@@ -34,8 +34,12 @@ export default function AuthProvider({ children }) {
     }
   }, [])
 
+  // useEffect(() => {
+  //   loadUser()
+  // }, [loadUser])
+  // LINT popravek
   useEffect(() => {
-    loadUser()
+    Promise.resolve().then(() => loadUser())
   }, [loadUser])
 
   async function login(email, password) {
@@ -72,7 +76,7 @@ export default function AuthProvider({ children }) {
     try {
       localStorage.setItem(BUILDING_KEY, String(id))
     } catch {
-      
+      // Če localStorage ni dostopen, ohranimo izbiro samo v React state.
     }
   }
 
