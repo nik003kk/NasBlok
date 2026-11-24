@@ -9,6 +9,8 @@ export function setToken(token) {
   else localStorage.removeItem(TOKEN_KEY)
 }
 
+const API_URL = import.meta.env?.VITE_API_URL || ''
+
 export async function api(path, { method = 'GET', body } = {}) {
   const headers = {}
   if (body !== undefined) headers['Content-Type'] = 'application/json'
@@ -16,7 +18,7 @@ export async function api(path, { method = 'GET', body } = {}) {
   const token = getToken()
   if (token) headers.Authorization = `Bearer ${token}`
 
-  const res = await fetch(`/api${path}`, {
+  const res = await fetch(`${API_URL}/api${path}`, {   
     method,
     headers,
     body: body !== undefined ? JSON.stringify(body) : undefined,
