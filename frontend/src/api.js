@@ -1,5 +1,4 @@
 const TOKEN_KEY = 'nasblok_token'
-const test = 123
 
 export function getToken() {
   return localStorage.getItem(TOKEN_KEY)
